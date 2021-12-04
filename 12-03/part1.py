@@ -7,9 +7,9 @@ def freq(flag):
         # a.most_common(1)[0][1] // 4
         match flag:
             case 'max':
-                return Counter(l).most_common(1)[0][1]
+                return Counter(l).most_common()[0][0]
             case 'min':
-                return Counter(l).most_common()[-1][1]
+                return Counter(l).most_common()[-1][0]
             case _:
                 raise ValueError
     return count_freq
@@ -23,16 +23,14 @@ def main():
     rotated_diagnostic = [[row[i] for row in prepared_diagnostic]
                           for i in range(len(prepared_diagnostic[0]))]
 
-    gamma, epsilon = 0, 0
+    gamma, epsilon = [], []
     max_freq = freq('max')
     min_freq = freq('min')
-    # TODO: Misread problem - need to find most common bit (1 or 0)
-    # TODO: for each position then create binary number
-    # TODO: then convert to int
-    gamma = sum([max_freq(r) for r in rotated_diagnostic])
-    epsilon = sum([min_freq(r) for r in rotated_diagnostic])
 
-    print(gamma * epsilon)
+    [gamma.append(max_freq(r)) for r in rotated_diagnostic]
+    [epsilon.append(min_freq(r)) for r in rotated_diagnostic]
+
+    print(int(''.join(gamma), 2) * int(''.join(epsilon), 2))
 
 
 if __name__ == "__main__":
