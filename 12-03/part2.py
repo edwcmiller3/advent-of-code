@@ -31,14 +31,14 @@ def hof_freq(compare):
 
 
 def oxygen_generator_rating(ls, index=0):
-    if index == len(ls):
-        return  # SOMETHING
     # find most common bit (1 or 0)
     # if equally common, select 1
     # create list with only those where bit n is most common
     # recursion until only one list remains
     # return as int
-    return oxygen_generator_rating(ls, index + 1)
+    # From https://github.com/Vasile-Hij/AOC-2021/blob/main/scripts/3.py
+    new_ls = [l for l in ls if l[index] == f]
+    return new_ls[0] if len(new_ls) == 1 else oxygen_generator_rating(ls, index + 1)
 
 
 def co2_scrubber_rating(ls, index=0):
@@ -61,10 +61,9 @@ def main():
     max_freq = hof_freq(max)
     min_freq = hof_freq(min)
 
-    oxy = int(''.join([max_freq(r) for r in rotated_diagnostic]), 2)
-    co2 = int(''.join([min_freq(s) for s in rotated_diagnostic]), 2)
+    # oxy = int(''.join([max_freq(r) for r in rotated_diagnostic]), 2)
+    # co2 = int(''.join([min_freq(s) for s in rotated_diagnostic]), 2)
 
-    print(oxy * co2)
 
 
 if __name__ == "__main__":
