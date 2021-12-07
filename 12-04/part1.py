@@ -4,9 +4,17 @@
 # Choose first winning board and determine score for that board
 
 def main():
-    with open('input.txt', 'r') as my_file:
-        # raw_diagnostic = my_file.read()
-        pass
+    with open('numbers.txt', 'r') as numbers:
+        draw = numbers.readline()
+    
+    # with open('boards.txt', 'r') as board_set:
+    #     boards = board_set.read().split('\n\n')
+
+    with open('boards.txt', 'r') as board_set:
+        boards = [[c for c in l.split() if c != '\n\n'] for l in board_set.readlines()]
+
+    print(draw)
+    print(boards)
 
 
 if __name__ == "__main__":
