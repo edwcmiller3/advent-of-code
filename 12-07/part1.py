@@ -10,10 +10,6 @@ def calc_fuel(c, pos):
     return abs(c - pos)
 
 
-def get_fuel_cost(ls, point):
-    return list(map())
-
-
 def main():
     with open('input.txt', 'r') as crab_file:
         crabs = list(map(int, crab_file.readline().split(',')))
