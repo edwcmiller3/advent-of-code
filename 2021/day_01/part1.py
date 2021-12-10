@@ -10,7 +10,7 @@ def count_bigger(d):
 
 def main():
     data = read_input('input.txt')
-    print(count_bigger(data))  # 1581
+    print(count_bigger(data))
 
 
 if __name__ == "__main__":
