@@ -1,6 +1,7 @@
 def read_input(filename):
     with open(filename, 'r') as f:
-        return [int(i) for i in f.readlines()]
+        temp = f.read().splitlines()
+        return [int(t) for t in temp if t.isnumeric()]
 
 
 def count_bigger(d):
