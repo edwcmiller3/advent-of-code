@@ -10,10 +10,28 @@ def tuplify(i):
     x, y = i.split()
     return tuple([x, int(y)])
 
+def read_input(filename):
+    with open(filename, 'r') as f:
+        temp = f.read().splitlines()
+    return [tuple(l.split()) for l in temp]
+
+def get_location(command):
+    # depth, distance = 0, 0
+    match command:
+        case ('forward', x):
+            return ('distance', x)
+        case ('down', x) | ('up', x) :
+            return ('depth', x)
+
 def main():
     with open('input.txt', 'r') as my_file:
         # steps = tuplify_input(my_file.readlines())
         steps = map(tuplify, my_file.readlines())
+    
+    print(read_input('input.txt')[0])
+
+    depth, distance = [], []
+    []
     
     depth, distance = 0, 0
     for j, k in steps:
@@ -29,4 +47,5 @@ def main():
     print(depth * distance)
 
 if __name__ == "__main__":
+    # ANSWER: 2117664
     main()
