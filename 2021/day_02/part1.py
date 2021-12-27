@@ -30,8 +30,7 @@ def main():
     
     print(read_input('input.txt')[0])
 
-    depth, distance = [], []
-    []
+    # depth, distance = [], []
     
     depth, distance = 0, 0
     for j, k in steps:
