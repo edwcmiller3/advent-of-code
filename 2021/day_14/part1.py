@@ -13,9 +13,10 @@ def read_file(file):
 def insert_pairs(polymer, rules, times):
     if times == 0:
         return polymer
-    it = [polymer[i:i+2] for i in range(0, len(polymer) - 1)]
+    it = [polymer[i:i+2] for i in range(0, len(polymer) - 1, 2)]
     new_polymer = ''.join([i[0] + rules[i] + i[1]
                           for i in it if i in rules.keys()])
+    print(len(new_polymer))
     return insert_pairs(new_polymer, rules, times - 1)
 
 
@@ -26,10 +27,11 @@ def result(polymer):
 
 def main():
     polymer_template = "CKKOHNSBPCPCHVNKHFFK"
-
+    
     with open('input.txt', 'r') as f:
         rules = read_file(f)
 
+    # print(len(insert_pairs(polymer_template, rules, 10)))
     print(result(insert_pairs(polymer_template, rules, 10)))
 
 
