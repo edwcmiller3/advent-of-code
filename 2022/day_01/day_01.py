@@ -6,7 +6,6 @@ def parse_input(file: TextIO) -> Tuple[Tuple[str]]:
 
 
 def tuple_str_to_int(tupstr: Tuple[Tuple[str]]) -> Tuple[Tuple[int]]:
-    # return tuple(int(item) for item in tupstr)
     return tuple(tuple(map(int, x)) for x in tupstr)
 
 
