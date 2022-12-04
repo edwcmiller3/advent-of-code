@@ -1,4 +1,4 @@
-from day_03 import *
+from day_03_part_01 import *
 
 
 def test_priority():
