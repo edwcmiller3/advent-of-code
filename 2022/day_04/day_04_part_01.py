@@ -1,4 +1,4 @@
-from typing import TextIO, Tuple
+from typing import TextIO, Tuple, Set
 
 # In how many assignment pairs does one range fully contain the other?
 # use one of these:
@@ -22,12 +22,31 @@ def read_file(file: TextIO) -> Tuple[Tuple[str, ...]]:
     """Read and clean a file returning contents as a tuple of tuples"""
     return tuple(tuple(ag.split(',')) for ag in file.read().strip().split("\n"))
 
-def section_ranges(sections: str) -> Tuple[int, ...]:
-    """Takes a sections ('9-61') and creates a tuple of ranges"""
-    return (1,2,3)
+
+def parse_range(section_range: str, splitter: str) -> Tuple[str, str]:
+    """Takes a section_range like '10-15' and a spliiter like '-' then
+    returns a tuple with each part of the split section_range"""
+    return tuple(section_range.split(splitter))
+
+
+def generate_range_set(parsed_range: Tuple[str, str]) -> Set[int]:
+    """Takes a parsed_range like ('9', '61') and returns a set of a 
+    range from parsed_range[0] through parsed_range[1] inclusive"""
+    return set(range(int(parsed_range[0]), int(parsed_range[1]) + 1))
+
+
+def find_subsets(range_set_A: Set[int], range_set_B: Set[int]) -> int:
+    """Compare 2 sets and return 1 if either is a subset of the other 
+    otherwise return 0"""
+    return 1 if (range_set_A.issubset(range_set_B) or range_set_B.issubset(range_set_A)) else 0
+
 
 if __name__ == "__main__":
     with open("input.txt", "r") as f:
-        #tuple(print(i.split(',')) for i in read_file(f))
-        #print(f.read()[0])
-        print(read_file(f))
+        read = read_file(f)
+        total = 0
+        for i, j in read:
+            # i is range A, j is range B
+            total += find_subsets(generate_range_set(parse_range(i, '-')),
+                                  generate_range_set(parse_range(j, '-')))
+        print(f"Total: {total}")
