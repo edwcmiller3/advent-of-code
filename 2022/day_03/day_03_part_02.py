@@ -24,7 +24,6 @@ def priority(item: str) -> int:
 
 
 if __name__ == "__main__":
-    total = 0
     with open("input.txt", "r") as f:
         print(
             f"Part 2: {sum((priority(common_among_group(group)) for group in grouper(read_file(f), size=3)))}")
