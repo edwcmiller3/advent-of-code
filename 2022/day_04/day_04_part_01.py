@@ -1,22 +1,5 @@
 from typing import TextIO, Tuple, Set
 
-# In how many assignment pairs does one range fully contain the other?
-# use one of these:
-#
-# isdisjoint(other)
-#     Return True if the set has no elements in common with other. Sets are disjoint if and only if their intersection is the empty set.
-
-# issubset(other)
-# set <= other
-#     Test whether every element in the set is in other.
-
-# set < other
-#     Test whether the set is a proper subset of other, that is, set <= other and set != other.
-
-# issuperset(other)
-# set >= other
-#     Test whether every element in other is in the set.
-
 
 def read_file(file: TextIO) -> Tuple[Tuple[str, ...]]:
     """Read and clean a file returning contents as a tuple of tuples"""
@@ -43,10 +26,4 @@ def find_subsets(range_set_A: Set[int], range_set_B: Set[int]) -> int:
 
 if __name__ == "__main__":
     with open("input.txt", "r") as f:
-        read = read_file(f)
-        total = 0
-        for i, j in read:
-            # i is range A, j is range B
-            total += find_subsets(generate_range_set(parse_range(i, '-')),
-                                  generate_range_set(parse_range(j, '-')))
-        print(f"Total: {total}")
+        print(f"Part 1: {sum((find_subsets(generate_range_set(parse_range(range_A, '-')), generate_range_set(parse_range(range_B, '-'))) for (range_A, range_B) in read_file(f)))}")
