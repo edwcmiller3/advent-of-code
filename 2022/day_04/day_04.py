@@ -24,6 +24,15 @@ def find_subsets(range_set_A: Set[int], range_set_B: Set[int]) -> int:
     return 1 if (range_set_A.issubset(range_set_B) or range_set_B.issubset(range_set_A)) else 0
 
 
+def find_overlap(range_set_A: Set[int], range_set_B: Set[int]) -> int:
+    """Compare 2 sets and return 1 if either set share a member
+    otherwise return 0"""
+    return 0 if range_set_A.isdisjoint(range_set_B) else 1
+
+
 if __name__ == "__main__":
     with open("input.txt", "r") as f:
         print(f"Part 1: {sum((find_subsets(generate_range_set(parse_range(range_A, '-')), generate_range_set(parse_range(range_B, '-'))) for (range_A, range_B) in read_file(f)))}")
+
+    with open("input.txt", "r") as f:
+        print(f"Part 2: {sum((find_overlap(generate_range_set(parse_range(range_A, '-')), generate_range_set(parse_range(range_B, '-'))) for (range_A, range_B) in read_file(f)))}")
