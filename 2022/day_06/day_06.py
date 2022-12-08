@@ -28,3 +28,6 @@ def find_signal(sequence: str, size: int):
 if __name__ == "__main__":
     with open("input.txt", "r") as f:
         print(f"Part 1: {find_signal(read_input(f), 4)}")
+    
+    with open("input.txt", "r") as f:
+        print(f"Part 2: {find_signal(read_input(f), 14)}")
